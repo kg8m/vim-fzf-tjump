@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -e  # Stop when error
+set -u  # Error when unknown variables
+
+filepath="$1"
+pattern="$( echo "$@" | sed -e "s#^.*${filepath}##" | egrep -o '/\^.*\$/' | sed -e 's#^/\^##' | sed -e 's#\$/$##' )"
+
+line_number="$( grep -Fn "$pattern" "$filepath" | head -n 1 | egrep -o '^[0-9]+' )"
+
+if [[ -n "$line_number" ]]; then
+  echo "$line_number"
+else
+  echo "$@" | egrep -o '\bline:[0-9]+\b' | sed -e 's/line://'
+fi
