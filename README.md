@@ -3,7 +3,7 @@ vim-fzf-tjump
 
 A Vim plugin aiming to be an alternative to Vim's builtin `:tjump`.
 
-  * Can filter and select tag candidates by fzf
+  * Can filter tag candidates and select a one by fzf
   * Can show selected tag candidate's code preview
 
 ![Kapture 2020-03-13 at 23 55 53](https://user-images.githubusercontent.com/694547/76632254-43753800-6586-11ea-8794-bb992bc53bed.gif)
@@ -14,7 +14,7 @@ Functions
 
 ### `fzf#tjump`
 
-Show taglist matched with given word and go to selected tag. Go directly if matched tag is only 1.
+Show tag candidates matched with given word and go to selected tag. Go directly if matched tag is only 1.
 
 Use current word (`<cword>`) as given word if no argument is given or given word is an empty string.
 
