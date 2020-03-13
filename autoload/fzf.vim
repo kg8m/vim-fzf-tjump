@@ -6,7 +6,7 @@ function! fzf#tjump(word = "") abort  " {{{
   let options = #{
     \   source:  s:taglist(word),
     \   sink:    function("s:handler"),
-    \   options: ["--no-multi", "--prompt", "Tjump> ", "--preview-window", "right", "--preview", s:command_to_preview()],
+    \   options: ["--select-1", "--no-multi", "--prompt", "Tjump> ", "--preview-window", "right", "--preview", s:command_to_preview()],
     \ }
 
   call fzf#run(fzf#wrap("tjump", options))
