@@ -1,0 +1,94 @@
+*vim-fzf-tjump.txt*	Plugin to do `:tjump` and preview by fzf
+
+==============================================================================
+Table of Contents                            *vim-fzf-tjump-table-of-contents*
+
+Summary        |vim-fzf-tjump-summary|
+Requirements   |vim-fzf-tjump-requirements|
+Installation   |vim-fzf-tjump-installation|
+Functions      |vim-fzf-tjump-functions|
+Commands       |vim-fzf-tjump-commands|
+Mappings       |vim-fzf-tjump-mappings|
+Variables      |vim-fzf-tjump-variables|
+
+==============================================================================
+Summary                                                *vim-fzf-tjump-summary*
+
+*vim-fzf-tjump* is a Vim plugin aiming to be an alternative to Vim's builtin
+|:tjump|.
+
+  * Filter tag candidates and select a one by fzf
+  * Show selected tag candidate's code preview
+
+==============================================================================
+Requirements                                      *vim-fzf-tjump-requirements*
+
+  * fzf.vim (https://github.com/junegunn/fzf.vim)
+  * Linux or Mac
+    * Windows are not supported
+
+==============================================================================
+Installation                                      *vim-fzf-tjump-installation*
+
+If you use dein.vim (https://github.com/Shougo/dein.vim):
+
+>
+	call dein#add("kg8m/vim-fzf-tjump")
+<
+
+==============================================================================
+Functions                                            *vim-fzf-tjump-functions*
+
+                                                                 *fzf#tjump()*
+fzf#tjump([{tagname}])
+	Show tag candidates matched with given {tagname} and go to selected
+	tag. Go directly if matched tag is only 1. Selected tag's code preview
+	is shown.
+	{tagname} is a string which you want to jump to. Use current word
+	(|<cword>|) as {tagname} if no argument is given or {tagname} is an
+	empty string.
+
+==============================================================================
+Commands                                              *vim-fzf-tjump-commands*
+
+                                                          *:Tjump* *:FzfTjump*
+:Tjump [{tagname}]
+	A wrapper command of |fzf#tjump()|.
+	The command name follows |g:fzf_command_prefix|. It is :FzfTjump if
+	you configure as following:
+
+>
+	let g:fzf_command_prefix = "Fzf"
+<
+
+                                                           *<Plug>(fzf-tjump)*
+<Plug>(fzf-tjump)
+	A Wrapper and utility command of |:Tjump| for mappings.
+	In normal mode, this works as |:Tjump| without argument.
+	In visual mode, this works as |:Tjump| with giving selected word as
+	the argument {tagname}.
+
+==============================================================================
+Mappings                                              *vim-fzf-tjump-mappings*
+
+|vim-fzf--tjump| adds no mappings. You can add mappings as you like.
+
+------------------------------------------------------------------------------
+                                               *vim-fzf-tjump-mapping-example*
+Mapping Example
+
+>
+	map g] <Plug>(fzf-tjump)
+<
+
+==============================================================================
+Variables                                            *vim-fzf-tjump-variables*
+
+                                             *g:fzf_tjump_path_to_preview_bin*
+g:fzf_tjump_path_to_preview_bin
+	Filepath to the preview script. Unless defined, |vim-fzf-tjump|
+	automatically detects fzf.vim's bin/preview.sh in runtimepaths.
+	Default: undefined
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:fdl=0:
