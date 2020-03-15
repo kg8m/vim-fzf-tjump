@@ -1,10 +1,10 @@
 let s:script_path = expand("<sfile>")
 let s:bin_paths   = {}
 
-function! fzf#tjump(word = "") abort  " {{{
-  let word    = empty(a:word) ? expand("<cword>") : a:word
+function! fzf#tjump(tagname = "") abort  " {{{
+  let tagname = empty(a:tagname) ? expand("<cword>") : a:tagname
   let options = #{
-    \   source:  s:taglist(word),
+    \   source:  s:taglist(tagname),
     \   sink:    function("s:handler"),
     \   options: ["--select-1", "--no-multi", "--prompt", "Tjump> ", "--preview-window", "right", "--preview", s:command_to_preview()],
     \ }
@@ -12,9 +12,9 @@ function! fzf#tjump(word = "") abort  " {{{
   call fzf#run(fzf#wrap("tjump", options))
 endfunction  " }}}
 
-function! s:taglist(word) abort  " {{{
+function! s:taglist(tagname) abort  " {{{
   return map(
-       \   taglist("^" . a:word . "$", expand("%")),
+       \   taglist("^" . a:tagname . "$", expand("%")),
        \   { _, tag -> join([tag.name, fnamemodify(tag.filename, ":~:."), tag.cmd, "line:" . get(tag, "line")], "\t") }
        \ )
 endfunction  " }}}

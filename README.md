@@ -14,9 +14,9 @@ Functions
 
 ### `fzf#tjump`
 
-Show tag candidates matched with given word and go to selected tag. Go directly if matched tag is only 1.
+Show tag candidates matched with given tag name and go to selected tag. Go directly if matched tag is only 1.
 
-Use current word (`<cword>`) as given word if no argument is given or given word is an empty string.
+Use current word (`<cword>`) as given tag name if no argument is given or given tag name is an empty string.
 
 Show selected tag's code preview.
 
