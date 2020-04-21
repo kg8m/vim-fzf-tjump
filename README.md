@@ -64,4 +64,5 @@ Requirements
 --------------------------------------------------
 
   * [fzf.vim](https://github.com/junegunn/fzf.vim)
+  * Newer Vim
   * Linux or Mac
