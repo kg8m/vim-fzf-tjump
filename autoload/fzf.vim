@@ -36,7 +36,7 @@ endfunction  " }}}
 
 function! s:command_to_preview() abort  " {{{
   " `{2}`: filepath, e.g., `app/models/user.rb`
-  return s:path_to_preview_bin() . ' {2}:"$( ' . s:command_to_detect_tag_line() . ' )"'
+  return "bash -c \"" . s:path_to_preview_bin() . " {2}:\\\"$( " . s:command_to_detect_tag_line() . " )\\\"\""
 endfunction  " }}}
 
 function! s:command_to_detect_tag_line() abort  " {{{
