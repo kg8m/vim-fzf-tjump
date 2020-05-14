@@ -36,13 +36,20 @@ endfunction  " }}}
 
 function! s:command_to_preview() abort  " {{{
   " `{2}`: filepath, e.g., `app/models/user.rb`
-  return "bash -c \"" . s:path_to_preview_bin() . " {2}:\\\"\\$( " . s:command_to_detect_tag_line() . " )\\\"\""
+  " Don't use double quotation marks like `bash -c "..."` because `$` can be contained in command and cause errors
+  return "bash -c '" . s:path_to_preview_bin() . " " .s:escape_placeholder("{2}") . ":\"$( " . s:command_to_detect_tag_line() . " )\"'"
 endfunction  " }}}
 
 function! s:command_to_detect_tag_line() abort  " {{{
   " `{2}`: filepath, e.g., `app/models/user.rb`
   " `{}`:  whole tag line, e.g., `User\tapp/models/user.rb\t/^class User < ApplicationRecord$/\tline:1`
-  return s:path_to_detect_tag_line_bin() . " {2} {}"
+  return s:path_to_detect_tag_line_bin() . " " . s:escape_placeholder("{2}") . " " . s:escape_placeholder("{}")
+endfunction  " }}}
+
+function! s:escape_placeholder(placeholder) abort  " {{{
+  " Escape single-quoted placeholders, e.g., `'{}'` to `'\''{}'\''`
+  " Note: Non-escaped single quotation marks are inserted by fzf
+  return "'\\'" . a:placeholder . "\\''"
 endfunction  " }}}
 
 function! s:path_to_preview_bin() abort  " {{{
