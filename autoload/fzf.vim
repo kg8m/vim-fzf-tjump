@@ -6,7 +6,14 @@ function! fzf#tjump(tagname = "") abort  " {{{
   let options = #{
     \   source:  s:taglist(tagname),
     \   sink:    function("s:handler"),
-    \   options: ["--select-1", "--no-multi", "--prompt", "Tjump> ", "--delimiter", "[:\t]", "--preview-window", "right:wrap:+{3}-15", "--preview", s:command_to_preview()],
+    \   options: [
+    \     "--select-1",
+    \     "--no-multi",
+    \     "--prompt", "Tjump> ",
+    \     "--delimiter", "[:\t]",
+    \     "--preview-window", "right:wrap:+{3}-15",
+    \     "--preview", s:command_to_preview(),
+    \   ],
     \ }
 
   call fzf#run(fzf#wrap("tjump", options))
