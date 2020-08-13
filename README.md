@@ -1,7 +1,7 @@
 vim-fzf-tjump
 ==================================================
 
-A Vim plugin aiming to be an alternative to Vim's builtin `:tjump`.
+A Vim plugin aiming to be an alternative to Vim's built-in `:tjump`.
 
   * Filter tag candidates and select a one by fzf
   * Show selected tag candidate's code preview
