@@ -3,8 +3,8 @@ vim-fzf-tjump
 
 A Vim plugin aiming to be an alternative to Vim's built-in `:tjump`.
 
-  * Filter tag candidates and select a one by fzf
-  * Show selected tag candidate's code preview
+* Filter tag candidates and select a one by fzf
+* Show selected tag candidate's code preview
 
 ![Kapture 2020-03-13 at 23 55 53](https://user-images.githubusercontent.com/694547/76632254-43753800-6586-11ea-8794-bb992bc53bed.gif)
 
@@ -65,10 +65,10 @@ Note: Specifying option `"merged": 0` may help you if you get some troubles usin
 Requirements
 --------------------------------------------------
 
-  * [fzf](https://github.com/junegunn/fzf) 0.22+
-    * fzf 0.22 supports preview window option for setting the initial scroll offset
-  * [fzf.vim](https://github.com/junegunn/fzf.vim)
-  * Tag file with line numbers of tag definitions
-    * You can probably create it by `ctags --fields=n` command
-  * Newer Vim
-  * Linux or Mac
+* [fzf](https://github.com/junegunn/fzf) 0.22+
+  * fzf 0.22 supports preview window option for setting the initial scroll offset
+* [fzf.vim](https://github.com/junegunn/fzf.vim)
+* Tag file with line numbers of tag definitions
+  * You can probably create it by `ctags --fields=n` command
+* Newer Vim
+* Linux or Mac
