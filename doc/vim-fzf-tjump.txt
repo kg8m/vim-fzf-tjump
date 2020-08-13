@@ -23,7 +23,11 @@ Summary                                                *vim-fzf-tjump-summary*
 ==============================================================================
 Requirements                                      *vim-fzf-tjump-requirements*
 
+  * fzf (https://github.com/junegunn/fzf) 0.22+
+    * fzf 0.22 supports preview window option for setting the initial scroll offset
   * fzf.vim (https://github.com/junegunn/fzf.vim)
+  * Tag file with line numbers of tag definitions
+    * You can probably create it by `ctags --fields=n` command
   * Linux or Mac
     * Windows are not supported
 

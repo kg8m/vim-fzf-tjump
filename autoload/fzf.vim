@@ -6,7 +6,7 @@ function! fzf#tjump(tagname = "") abort  " {{{
   let options = #{
     \   source:  s:taglist(tagname),
     \   sink:    function("s:handler"),
-    \   options: ["--select-1", "--no-multi", "--prompt", "Tjump> ", "--preview-window", "right:wrap", "--preview", s:command_to_preview()],
+    \   options: ["--select-1", "--no-multi", "--prompt", "Tjump> ", "--delimiter", "[:\t]", "--preview-window", "right:wrap:+{3}-15", "--preview", s:command_to_preview()],
     \ }
 
   call fzf#run(fzf#wrap("tjump", options))
@@ -15,35 +15,30 @@ endfunction  " }}}
 function! s:taglist(tagname) abort  " {{{
   return map(
        \   taglist("^" . a:tagname . "$", expand("%")),
-       \   { _, tag -> join([tag.name, fnamemodify(tag.filename, ":~:."), tag.cmd, "line:" . get(tag, "line")], "\t") }
+       \   { _, tag -> join([tag.name, fnamemodify(tag.filename, ":~:.") . ":" . get(tag, "line"), tag.cmd], "\t") }
        \ )
 endfunction  " }}}
 
 function! s:handler(item) abort  " {{{
   let parts    = split(a:item, "\t")
-  let filepath = parts[1]
-  let excmd    = join(parts[2:-2], "")[:-2]
+  let filepath = split(parts[1], ":")[0]
+  let excmd    = join(parts[2:-1], "")[:-2]
 
   execute "edit " . filepath
 
   try
     silent execute excmd
   catch
-    let line = matchstr(parts[-1], '\v^line:\zs\d+\ze$')
+    let line = split(parts[1], ":")[1]
     silent execute line
   endtry
 endfunction  " }}}
 
 function! s:command_to_preview() abort  " {{{
   " `{2}`: filepath, e.g., `app/models/user.rb`
+  " `{3}`: line number
   " Don't use double quotation marks like `bash -c "..."` because `$` can be contained in command and cause errors
-  return "bash -c '" . s:path_to_preview_bin() . " " .s:escape_placeholder("{2}") . ":\"$( " . s:command_to_detect_tag_line() . " )\"'"
-endfunction  " }}}
-
-function! s:command_to_detect_tag_line() abort  " {{{
-  " `{2}`: filepath, e.g., `app/models/user.rb`
-  " `{}`:  whole tag line, e.g., `User\tapp/models/user.rb\t/^class User < ApplicationRecord$/\tline:1`
-  return s:path_to_detect_tag_line_bin() . " " . s:escape_placeholder("{2}") . " " . s:escape_placeholder("{}")
+  return "bash -c '" . s:path_to_preview_bin() . " " .s:escape_placeholder("{2}") . ":{3}'"
 endfunction  " }}}
 
 function! s:escape_placeholder(placeholder) abort  " {{{
@@ -71,12 +66,4 @@ function! s:path_to_preview_bin() abort  " {{{
   else
     throw "Can't detect the path to fzf.vim's preview.sh. Check if fzf.vim is in `&runtimepath` or Specify `g:fzf_tjump_path_to_preview_bin`."
   endif
-endfunction  " }}}
-
-function! s:path_to_detect_tag_line_bin() abort  " {{{
-  if !has_key(s:bin_paths, "detect_tag_line")
-    let s:bin_paths.detect_tag_line = fnamemodify(s:script_path, ":h:h") . "/bin/detect_tag_line"
-  endif
-
-  return s:bin_paths.detect_tag_line
 endfunction  " }}}

@@ -65,6 +65,10 @@ Note: Specifying option `"merged": 0` may help you if you get some troubles usin
 Requirements
 --------------------------------------------------
 
+  * [fzf](https://github.com/junegunn/fzf) 0.22+
+    * fzf 0.22 supports preview window option for setting the initial scroll offset
   * [fzf.vim](https://github.com/junegunn/fzf.vim)
+  * Tag file with line numbers of tag definitions
+    * You can probably create it by `ctags --fields=n` command
   * Newer Vim
   * Linux or Mac
