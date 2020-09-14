@@ -12,7 +12,7 @@ A Vim plugin aiming to be an alternative to Vim's built-in `:tjump`.
 Functions
 --------------------------------------------------
 
-### `fzf#tjump`
+### `fzf_tjump#jump`
 
 Show tag candidates matched with given tag name and go to selected tag. Go directly if matched tag is only 1.
 
@@ -26,7 +26,7 @@ Commands
 
 ### `:Tjump`
 
-A wrapper of `fzf#tjump`.
+A wrapper of `fzf_tjump#jump`.
 
 `g:fzf_command_prefix` is respected. The command name is `:FzfTjump` if you configure as following:
 
@@ -44,8 +44,8 @@ vim-fzf-tjump adds no mappings. You can add mappings.
 ### Mapping example
 
 ```vim
-" Press `g]` in normal mode to call `fzf#tjump`.
-" Press `g]` in visual mode to call `fzf#tjump` with selected word.
+" Press `g]` in normal mode to call `fzf_tjump#jump`.
+" Press `g]` in visual mode to call `fzf_tjump#jump` with selected word.
 map g] <Plug>(fzf-tjump)
 ```
 

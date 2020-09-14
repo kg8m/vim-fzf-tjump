@@ -24,7 +24,8 @@ Summary                                                *vim-fzf-tjump-summary*
 Requirements                                      *vim-fzf-tjump-requirements*
 
   * fzf (https://github.com/junegunn/fzf) 0.22+
-    * fzf 0.22 supports preview window option for setting the initial scroll offset
+    * fzf 0.22 supports preview window option for setting the initial scroll
+      offset
   * fzf.vim (https://github.com/junegunn/fzf.vim)
   * Tag file with line numbers of tag definitions
     * You can probably create it by `ctags --fields=n` command
@@ -43,8 +44,8 @@ If you use dein.vim (https://github.com/Shougo/dein.vim):
 ==============================================================================
 Functions                                            *vim-fzf-tjump-functions*
 
-                                                                 *fzf#tjump()*
-fzf#tjump([{tagname}])
+                                                            *fzf_tjump#jump()*
+fzf_tjump#jump([{tagname}])
 	Show tag candidates matched with given {tagname} and go to selected
 	tag. Go directly if matched tag is only 1. Selected tag's code preview
 	is shown.
@@ -52,12 +53,16 @@ fzf#tjump([{tagname}])
 	(|<cword>|) as {tagname} if no argument is given or {tagname} is an
 	empty string.
 
+                                                                 *fzf#tjump()*
+fzf#tjump([{tagname}])
+	Deprecated. Use |fzf_tjump#jump()| instead.
+
 ==============================================================================
 Commands                                              *vim-fzf-tjump-commands*
 
                                                           *:Tjump* *:FzfTjump*
 :Tjump [{tagname}]
-	A wrapper command of |fzf#tjump()|.
+	A wrapper command of |fzf_tjump#jump()|.
 	The command name follows |g:fzf_command_prefix|. It is :FzfTjump if
 	you configure as following:
 
