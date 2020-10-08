@@ -11,12 +11,24 @@ function! fzf_tjump#jump(tagname = "") abort  " {{{
     \     "--no-multi",
     \     "--prompt", "Tjump> ",
     \     "--delimiter", "[:\t]",
-    \     "--preview-window", "right:wrap:+{3}-15",
+    \     "--preview-window", s:get_preview_options(),
     \     "--preview", s:command_to_preview(),
     \   ],
     \ }
 
   call fzf#run(fzf#wrap("tjump", options))
+endfunction  " }}}
+
+function! s:get_preview_options() abort  " {{{
+  if !has_key(s:, "preview_options")
+    if system("echo 1 | fzf --preview-window '+1-/2'")
+      let s:preview_options = "right:50%:wrap:+{3}-/2"
+    else
+      let s:preview_options = "right:50%:wrap:+{3}-15"
+    endif
+  endif
+
+  return s:preview_options
 endfunction  " }}}
 
 function! s:taglist(tagname) abort  " {{{
