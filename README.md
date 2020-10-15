@@ -59,8 +59,6 @@ If you use [dein.vim](https://github.com/Shougo/dein.vim):
 call dein#add("kg8m/vim-fzf-tjump")
 ```
 
-Note: Specifying option `"merged": 0` may help you if you get some troubles using dein.vim.
-
 
 Requirements
 --------------------------------------------------

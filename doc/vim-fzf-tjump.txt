@@ -53,10 +53,6 @@ fzf_tjump#jump([{tagname}])
 	(|<cword>|) as {tagname} if no argument is given or {tagname} is an
 	empty string.
 
-                                                                 *fzf#tjump()*
-fzf#tjump([{tagname}])
-	Deprecated. Use |fzf_tjump#jump()| instead.
-
 ==============================================================================
 Commands                                              *vim-fzf-tjump-commands*
 
