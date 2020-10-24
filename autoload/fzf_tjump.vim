@@ -21,8 +21,8 @@ endfunction  " }}}
 
 function! s:get_preview_options() abort  " {{{
   if !has_key(s:, "preview_options")
-    if system(": | fzf --exit-0 --preview-window '+1-/2'")
-      let s:preview_options = "right:50%:wrap:+{3}-/2"
+    if system(": | fzf --exit-0 --preview-window 'nohidden:+1-/2'")
+      let s:preview_options = "right:50%:wrap:nohidden:+{3}-/2"
     else
       let s:preview_options = "right:50%:wrap:+{3}-15"
     endif
