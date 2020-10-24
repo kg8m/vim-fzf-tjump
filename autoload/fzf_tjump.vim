@@ -13,7 +13,7 @@ function! fzf_tjump#jump(tagname = "") abort  " {{{
     \     "--delimiter", "[:\t]",
     \     "--preview-window", s:get_preview_options(),
     \     "--preview", s:command_to_preview(),
-    \   ],
+    \   ] + get(g:, "fzf_tjump_command_options", []),
     \ }
 
   call fzf#run(fzf#wrap("tjump", options))

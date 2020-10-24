@@ -89,6 +89,11 @@ Mapping Example
 ==============================================================================
 Variables                                            *vim-fzf-tjump-variables*
 
+                                                 *g:fzf_tjump_command_options*
+g:fzf_tjump_command_options
+	Options for fzf command. Use this variable when you want to overwrite
+	options.
+
                                              *g:fzf_tjump_path_to_preview_bin*
 g:fzf_tjump_path_to_preview_bin
 	Filepath to the preview script. Unless defined, |vim-fzf-tjump|
