@@ -4,17 +4,17 @@ let s:bin_paths   = {}
 function! fzf_tjump#jump(tagname = "") abort  " {{{
   let tagname = empty(a:tagname) ? expand("<cword>") : a:tagname
   let options = #{
-    \   source:  s:taglist(tagname),
-    \   sink:    function("s:handler"),
-    \   options: [
-    \     "--select-1",
-    \     "--no-multi",
-    \     "--prompt", "Tjump> ",
-    \     "--delimiter", "[:\t]",
-    \     "--preview-window", s:get_preview_options(),
-    \     "--preview", s:command_to_preview(),
-    \   ] + get(g:, "fzf_tjump_command_options", []),
-    \ }
+  \   source:  s:taglist(tagname),
+  \   sink:    function("s:handler"),
+  \   options: [
+  \     "--select-1",
+  \     "--no-multi",
+  \     "--prompt", "Tjump> ",
+  \     "--delimiter", "[:\t]",
+  \     "--preview-window", s:get_preview_options(),
+  \     "--preview", s:command_to_preview(),
+  \   ] + get(g:, "fzf_tjump_command_options", []),
+  \ }
 
   call fzf#run(fzf#wrap("tjump", options))
 endfunction  " }}}
@@ -35,9 +35,9 @@ endfunction  " }}}
 
 function! s:taglist(tagname) abort  " {{{
   return map(
-       \   taglist("^" . a:tagname . "$", expand("%")),
-       \   { _, tag -> join([tag.name, fnamemodify(tag.filename, ":~:.") . ":" . get(tag, "line"), tag.cmd], "\t") }
-       \ )
+  \   taglist("^" . a:tagname . "$", expand("%")),
+  \   { _, tag -> join([tag.name, fnamemodify(tag.filename, ":~:.") . ":" . get(tag, "line"), tag.cmd], "\t") }
+  \ )
 endfunction  " }}}
 
 function! s:handler(item) abort  " {{{
