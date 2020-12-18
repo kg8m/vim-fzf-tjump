@@ -16,6 +16,7 @@ function! fzf_tjump#jump(tagname = "") abort  " {{{
   \   ] + get(g:, "fzf_tjump_command_options", []),
   \ }
 
+  call s:prepare_to_update_tagstack(tagname)
   call fzf#run(fzf#wrap("tjump", options))
 endfunction  " }}}
 
@@ -45,6 +46,7 @@ function! s:handler(item) abort  " {{{
   let filepath = split(parts[1], ":")[0]
   let excmd    = join(parts[2:-1], "")[:-2]
 
+  call s:update_tagstack()
   execute "edit " . filepath
 
   try
@@ -87,4 +89,38 @@ function! s:path_to_preview_bin() abort  " {{{
   else
     throw "Can't detect the path to fzf.vim's preview.sh. Check if fzf.vim is in `&runtimepath` or Specify `g:fzf_tjump_path_to_preview_bin`."
   endif
+endfunction  " }}}
+
+function! s:prepare_to_update_tagstack(tagname) abort  " {{{
+  let bufnr = bufnr("%")
+  let item  = #{ bufnr: bufnr, from: [bufnr, line("."), col("."), 0], tagname: a:tagname }
+  let winid = win_getid()
+
+  let stack = gettagstack(winid)
+
+  if stack.length ==# stack.curidx
+    let action = "r"
+    let stack.items[stack.curidx - 1] = item
+  elseif stack.length > stack.curidx
+    let action = "r"
+
+    if stack.curidx > 1
+      let stack.items = add(stack.items[:stack.curidx - 2], item)
+    else
+      let stack.items = [item]
+    endif
+  else
+    let action = "a"
+    let stack.items = [item]
+  endif
+
+  let stack.curidx += 1
+
+  let s:tagstack_info_cache = #{ winid: winid, stack: stack, action: action }
+endfunction  " }}}
+
+function s:update_tagstack() abort  " {{{
+  let info = s:tagstack_info_cache
+  call settagstack(info.winid, info.stack, info.action)
+  unlet s:tagstack_info_cache
 endfunction  " }}}
