@@ -22,12 +22,16 @@ endfunction  " }}}
 
 function! s:get_preview_options() abort  " {{{
   if !has_key(s:, "preview_options")
-    call system("echo | fzf --select-1 --preview-window 'nohidden:+1-/2'")
-
-    if v:shell_error ==# 0
-      let s:preview_options = "right:50%:wrap:nohidden:+{3}-/2"
+    if has_key(g:, "fzf_tjump_preview_options")
+      let s:preview_options = g:fzf_tjump_preview_options
     else
-      let s:preview_options = "right:50%:wrap:+{3}-15"
+      call system("echo | fzf --select-1 --preview-window 'nohidden:+1-/2'")
+
+      if v:shell_error ==# 0
+        let s:preview_options = "right:50%:wrap:nohidden:+{3}-/2"
+      else
+        let s:preview_options = "right:50%:wrap:+{3}-15"
+      endif
     endif
   endif
 
