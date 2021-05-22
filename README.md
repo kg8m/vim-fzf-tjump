@@ -50,6 +50,16 @@ map g] <Plug>(fzf-tjump)
 ```
 
 
+Configurations
+--------------------------------------------------
+
+Let's execute as following for more information:
+
+```vim
+:h vim-fzf-tjump-variables
+```
+
+
 Installation
 --------------------------------------------------
 
