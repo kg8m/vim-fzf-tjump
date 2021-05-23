@@ -6,7 +6,7 @@ A Vim plugin aiming to be an alternative to Vim's built-in `:tjump`.
 * Filter tag candidates and select a one by fzf
 * Show selected tag candidate's code preview
 
-https://user-images.githubusercontent.com/694547/119251871-e17d7d00-bbe3-11eb-987c-2e2022335ca2.mp4
+https://user-images.githubusercontent.com/694547/119252206-e4796d00-bbe5-11eb-8e3e-6a99765a33e0.mp4
 
 
 Functions
