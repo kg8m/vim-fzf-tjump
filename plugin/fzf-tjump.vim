@@ -1,3 +1,8 @@
+if exists("g:loaded_fzf_tjump")
+  finish
+endif
+let g:loaded_fzf_tjump = 1
+
 let s:command_name = get(g:, "fzf_command_prefix", "") . "Tjump"
 execute "command! -nargs=? -complete=tag " . s:command_name . " call fzf_tjump#jump(<q-args>)"
 
