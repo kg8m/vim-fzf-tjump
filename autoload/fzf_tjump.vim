@@ -88,7 +88,7 @@ function! s:path_to_preview_bin() abort  " {{{
     endif
   endif
 
-  if has_key(s:bin_paths, "preview") && filereadable(s:bin_paths.preview)
+  if has_key(s:bin_paths, "preview") && executable(s:bin_paths.preview)
     return s:bin_paths.preview
   else
     throw "Can't detect the path to fzf.vim's preview.sh. Check if fzf.vim is in `&runtimepath` or Specify `g:fzf_tjump_path_to_preview_bin`."
