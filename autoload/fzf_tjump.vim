@@ -59,6 +59,10 @@ function! s:handler(item) abort  " {{{
     let line = split(parts[1], ":")[1]
     silent execute line
   endtry
+
+  " zv: Show cursor even if in fold.
+  " zz: Adjust cursor at center of window.
+  normal! zvzz
 endfunction  " }}}
 
 function! s:command_to_preview() abort  " {{{
