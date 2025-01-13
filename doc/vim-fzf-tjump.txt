@@ -14,23 +14,25 @@ Variables      |vim-fzf-tjump-variables|
 ==============================================================================
 Summary                                                *vim-fzf-tjump-summary*
 
-*vim-fzf-tjump* is a Vim plugin aiming to be an alternative to Vim's builtin
-|:tjump|.
+*vim-fzf-tjump* is a Vim plugin aiming to be an alternative to Vim’s built-in
+|:tjump| command. It leverages fzf to filter tag candidates interactively,
+allowing you to quickly jump to the desired tag with ease.
 
-  * Filter tag candidates and select a one by fzf
-  * Show selected tag candidate's code preview
+- Use fzf to filter tag candidates in real-time.
+- Preview the code of the selected tag before jumping.
+- Automatically jump directly if only one matching tag is found.
 
 ==============================================================================
 Requirements                                      *vim-fzf-tjump-requirements*
 
-  * fzf (https://github.com/junegunn/fzf) 0.22+
-    * fzf 0.22 supports preview window option for setting the initial scroll
+- fzf (https://github.com/junegunn/fzf) 0.22+
+    - fzf 0.22 supports preview window option for setting the initial scroll
       offset
-  * fzf.vim (https://github.com/junegunn/fzf.vim)
-  * Tag file with line numbers of tag definitions
-    * You can probably create it by `ctags --fields=n` command
-  * Linux or Mac
-    * Windows are not supported
+- fzf.vim (https://github.com/junegunn/fzf.vim)
+- Tag file with line numbers of tag definitions
+    - You can probably create it by `ctags --fields=n` command
+- Linux or Mac
+    - Windows are not supported
 
 ==============================================================================
 Installation                                      *vim-fzf-tjump-installation*
@@ -47,7 +49,7 @@ Functions                                            *vim-fzf-tjump-functions*
                                                             *fzf_tjump#jump()*
 fzf_tjump#jump([{tagname}], [{options}])
 	Show tag candidates matched with given {tagname} and go to selected
-	tag. Go directly if matched tag is only 1. Selected tag's code preview
+	tag. Go directly if matched tag is only 1. Selected tag’s code preview
 	is shown.
 	{tagname} is a string which you want to jump to. Use current word
 	(|<cword>|) as {tagname} if no argument is given or {tagname} is an
@@ -61,7 +63,7 @@ Commands                                              *vim-fzf-tjump-commands*
 
                                                           *:Tjump* *:FzfTjump*
 :Tjump [{tagname}]
-	A wrapper command of |fzf_tjump#jump()|.
+	A wrapper command for the |fzf_tjump#jump()|.
 	The command name follows |g:fzf_command_prefix|. It is :FzfTjump if
 	you configure as following:
 
@@ -101,7 +103,7 @@ g:fzf_tjump_command_options
 
                                                  *g:fzf_tjump_preview_options*
 g:fzf_tjump_preview_options
-	Options for fzf preview, i.e., fzf's `--preview-window` option. Unless
+	Options for fzf preview, i.e., fzf’s `--preview-window` option. Unless
 	defined, |vim-fzf-tjump| uses `"right:50%:wrap:nohidden:+{3}-/2"` or
 	`"right:50%:wrap:+{3}-15"`. The former value with relative scroll
 	offset is adopted if you use fzf 0.23+, otherwise the latter value is.
@@ -111,7 +113,7 @@ g:fzf_tjump_preview_options
                                              *g:fzf_tjump_path_to_preview_bin*
 g:fzf_tjump_path_to_preview_bin
 	Filepath to the preview script. Unless defined, |vim-fzf-tjump|
-	automatically detects fzf.vim's bin/preview.sh in runtimepaths.
+	automatically detects fzf.vim’s bin/preview.sh in runtimepaths.
 	Type: String
 	Default: undefined
 

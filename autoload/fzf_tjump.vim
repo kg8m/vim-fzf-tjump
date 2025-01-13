@@ -69,7 +69,7 @@ endfunction  " }}}
 function! s:command_to_preview() abort  " {{{
   " `{2}`: filepath, e.g., `app/models/user.rb`
   " `{3}`: line number
-  " Don't use double quotation marks like `bash -c "..."` because `$` can be contained in command and cause errors
+  " Don’t use double quotation marks like `bash -c "..."` because `$` can be contained in command and cause errors
   return "bash -c '" . s:path_to_preview_bin() . " " .s:escape_placeholder("{2}") . ":{3}'"
 endfunction  " }}}
 
@@ -96,7 +96,7 @@ function! s:path_to_preview_bin() abort  " {{{
   if has_key(s:bin_paths, "preview") && executable(s:bin_paths.preview)
     return s:bin_paths.preview
   else
-    throw "Can't detect the path to fzf.vim's preview.sh. Check if fzf.vim is in `&runtimepath` or Specify `g:fzf_tjump_path_to_preview_bin`."
+    throw "Can’t detect the path to fzf.vim’s preview.sh. Check if fzf.vim is in `&runtimepath` or Specify `g:fzf_tjump_path_to_preview_bin`."
   endif
 endfunction  " }}}
 
