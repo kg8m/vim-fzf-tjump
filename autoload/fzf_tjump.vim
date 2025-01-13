@@ -1,11 +1,12 @@
 let s:script_path = expand("<sfile>")
 let s:bin_paths   = {}
 
-function! fzf_tjump#jump(tagname = "") abort  " {{{
+function! fzf_tjump#jump(tagname = "", options = {}) abort  " {{{
   let tagname = empty(a:tagname) ? expand("<cword>") : a:tagname
   let options = #{
   \   source:  s:taglist(tagname),
   \   sink:    function("s:handler"),
+  \   exit:    get(a:options, "exit", function("s:noop")),
   \   options: [
   \     "--select-1",
   \     "--no-multi",
@@ -131,4 +132,8 @@ function s:update_tagstack() abort  " {{{
   let info = s:tagstack_info_cache
   call settagstack(info.winid, info.stack, info.action)
   unlet s:tagstack_info_cache
+endfunction  " }}}
+
+function s:noop(...) abort  " {{{
+  " Do nothing.
 endfunction  " }}}

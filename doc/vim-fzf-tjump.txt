@@ -45,13 +45,16 @@ If you use dein.vim (https://github.com/Shougo/dein.vim):
 Functions                                            *vim-fzf-tjump-functions*
 
                                                             *fzf_tjump#jump()*
-fzf_tjump#jump([{tagname}])
+fzf_tjump#jump([{tagname}], [{options}])
 	Show tag candidates matched with given {tagname} and go to selected
 	tag. Go directly if matched tag is only 1. Selected tag's code preview
 	is shown.
 	{tagname} is a string which you want to jump to. Use current word
 	(|<cword>|) as {tagname} if no argument is given or {tagname} is an
 	empty string.
+	{options} is a optional dictionary. You can specify the following:
+	    - `exit`: Same as `fzf#run()`’s `exit` option.
+	              See https://github.com/junegunn/fzf/blob/56fef7c8df2713261fbdbd396aa81ed23d9a945a/doc/fzf.txt#L311
 
 ==============================================================================
 Commands                                              *vim-fzf-tjump-commands*
